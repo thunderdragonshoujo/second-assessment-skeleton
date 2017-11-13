@@ -1,10 +1,10 @@
 package com.cooksys.secondassessmentskeleton.pojo;
 
 import java.sql.Timestamp;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Users {
@@ -13,16 +13,17 @@ public class Users {
 	private Integer id;
 	
 	private String username;
-	//private Profile profile;
+	@OneToOne
+	private Profile profile;
 	private Timestamp joined;
 
 	public Users() {
 
 	}
 
-	public Users(String username,Timestamp joined ) {
+	public Users(String username,Profile profile,Timestamp joined ) {
 		this.username = username;
-		//this.profile = profile;
+		this.profile = profile;
 		this.joined = joined;
 	}
 
@@ -67,13 +68,13 @@ public class Users {
 		this.username = username;
 	}
 
-	//public Profile getProfile() {
-		//return profile;
-	//}
+	public Profile getProfile() {
+		return profile;
+	}
 
-	//public void setProfile(Profile profile) {
-		//this.profile = profile;
-	//}
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
 
 	public Timestamp getJoined() {
 		return joined;
@@ -82,5 +83,6 @@ public class Users {
 	public void setJoined(Timestamp joined) {
 		this.joined = joined;
 	}
+	
 
 }

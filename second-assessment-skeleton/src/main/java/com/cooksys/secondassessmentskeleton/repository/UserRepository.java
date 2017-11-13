@@ -23,7 +23,7 @@ public class UserRepository {
 	}
 
 	public List<Users> getAll() {
-		return entityManager.createQuery("FROM USER", Users.class).getResultList();
+		return entityManager.createQuery("FROM Users", Users.class).getResultList();
 	}
 
 }

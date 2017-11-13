@@ -1,7 +1,16 @@
 package com.cooksys.secondassessmentskeleton.pojo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+@Entity
 public class Profile {
-	private Long userId;
+	@Id
+	@GeneratedValue
+	private Long id;
+	@OneToOne
+	private Users users;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -11,19 +20,11 @@ public class Profile {
 
 	}
 
-	public Profile(String firstName, String lastName, String email, String phone) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.phone = phone;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -36,20 +37,36 @@ public class Profile {
 		if (getClass() != obj.getClass())
 			return false;
 		Profile other = (Profile) obj;
-		if (userId == null) {
-			if (other.userId != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!userId.equals(other.userId))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
 
-	public Long getUserId() {
-		return userId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Users getUsers() {
+		return users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
+	}
+
+	public Profile(String firstName, String lastName, String email, String phone) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phone = phone;
 	}
 
 	public String getFirstName() {
