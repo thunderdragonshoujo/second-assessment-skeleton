@@ -3,14 +3,12 @@ package com.cooksys.secondassessmentskeleton.pojo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
+
 @Entity
 public class Profile {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@OneToOne
-	private Users users;
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -51,14 +49,6 @@ public class Profile {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public Users getUsers() {
-		return users;
-	}
-
-	public void setUsers(Users users) {
-		this.users = users;
 	}
 
 	public Profile(String firstName, String lastName, String email, String phone) {

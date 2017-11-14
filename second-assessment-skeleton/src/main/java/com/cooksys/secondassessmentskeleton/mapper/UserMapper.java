@@ -3,12 +3,12 @@ package com.cooksys.secondassessmentskeleton.mapper;
 import org.mapstruct.Mapper;
 
 import com.cooksys.secondassessmentskeleton.dto.UserDto;
-import com.cooksys.secondassessmentskeleton.pojo.Users;
+import com.cooksys.secondassessmentskeleton.pojo.User;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
-	UserDto toDto(Users users);
+	UserDto toDto(User user);
 	
-	Users fromDto(UserDto dto);
+	User fromDto(UserDto dto);
 
 }

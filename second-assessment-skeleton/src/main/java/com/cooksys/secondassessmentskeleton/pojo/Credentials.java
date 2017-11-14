@@ -1,7 +1,17 @@
 package com.cooksys.secondassessmentskeleton.pojo;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+@Entity
 public class Credentials {
-	private Long userId;
+	@Id
+	@GeneratedValue
+	private Long id;
+	@OneToOne
+	private User user;
 	private String username;
 	private String password;
 
@@ -19,7 +29,7 @@ public class Credentials {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((userId == null) ? 0 : userId.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -32,20 +42,28 @@ public class Credentials {
 		if (getClass() != obj.getClass())
 			return false;
 		Credentials other = (Credentials) obj;
-		if (userId == null) {
-			if (other.userId != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!userId.equals(other.userId))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}
 
-	public Long getUserId() {
-		return userId;
+	public Long getId() {
+		return id;
 	}
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 	public String getUsername() {
