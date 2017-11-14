@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
+import org.springframework.beans.factory.annotation.Required;
+
 @Entity
 public class Profile {
 	@Id
@@ -16,6 +18,14 @@ public class Profile {
 
 	public Profile() {
 
+	}
+
+	public Profile(String firstName, String lastName, String email, String phone) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.phone = phone;
 	}
 
 	@Override
@@ -51,14 +61,6 @@ public class Profile {
 		this.id = id;
 	}
 
-	public Profile(String firstName, String lastName, String email, String phone) {
-		super();
-		this.firstName = firstName;
-		this.lastName = lastName;
-		this.email = email;
-		this.phone = phone;
-	}
-
 	public String getFirstName() {
 		return firstName;
 	}
@@ -79,6 +81,7 @@ public class Profile {
 		return email;
 	}
 
+	@Required
 	public void setEmail(String email) {
 		this.email = email;
 	}

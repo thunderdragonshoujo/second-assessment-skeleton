@@ -25,10 +25,10 @@ public class UserService {
 		this.userRepository = userRepository;
 		this.userMapper = userMapper;
 		
-		Credentials credentials =new Credentials("userclint","password");
+		//Credentials credentials =new Credentials("userclint","password");
 		//credentialsRepository.save(credentials);
-		Profile profile = new Profile("clint","mcclure","cm@gmail.com","817");
-		userRepository.save(new User("clint",profile,credentials)); 
+		//Profile profile = new Profile("clint","mcclure","cm@gmail.com","817");
+		//userRepository.save(new User("clint",profile,credentials)); 
 				
 	}
 

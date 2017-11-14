@@ -5,26 +5,27 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
-import org.springframework.beans.factory.annotation.Required;
-
 @Entity
-public class Credentials {
+public class Context {
 	@Id
 	@GeneratedValue
 	private Long id;
 	@OneToOne
-	private User user;
-	private String username;
-	private String password;
+	private Tweet target;
+	@OneToOne
+	private Tweet before;
+	@OneToOne
+	private Tweet after;
 
-	public Credentials() {
+	public Context() {
 
 	}
 
-	public Credentials(String username, String password) {
+	public Context(Tweet target, Tweet before, Tweet after) {
 		super();
-		this.username = username;
-		this.password = password;
+		this.target = target;
+		this.before = before;
+		this.after = after;
 	}
 
 	@Override
@@ -43,7 +44,7 @@ public class Credentials {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Credentials other = (Credentials) obj;
+		Context other = (Context) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -60,30 +61,28 @@ public class Credentials {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
+	public Tweet getTarget() {
+		return target;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setTarget(Tweet target) {
+		this.target = target;
 	}
 
-	public String getUsername() {
-		return username;
+	public Tweet getBefore() {
+		return before;
 	}
 
-	@Required
-	public void setUsername(String username) {
-		this.username = username;
+	public void setBefore(Tweet before) {
+		this.before = before;
 	}
 
-	public String getPassword() {
-		return password;
+	public Tweet getAfter() {
+		return after;
 	}
 
-	@Required
-	public void setPassword(String password) {
-		this.password = password;
+	public void setAfter(Tweet after) {
+		this.after = after;
 	}
 
 }

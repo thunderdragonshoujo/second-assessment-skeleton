@@ -1,5 +1,8 @@
 package com.cooksys.secondassessmentskeleton.pojo;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -8,23 +11,24 @@ import javax.persistence.OneToOne;
 import org.springframework.beans.factory.annotation.Required;
 
 @Entity
-public class Credentials {
+public class Tweet {
 	@Id
 	@GeneratedValue
-	private Long id;
+	private Integer id;
 	@OneToOne
-	private User user;
-	private String username;
-	private String password;
+	private User author;
+	private Timestamp posted;
+	private String content;
 
-	public Credentials() {
-
+	public Tweet() {
+		this.posted = Timestamp.from(Instant.now());
 	}
 
-	public Credentials(String username, String password) {
+	public Tweet(User author, String content) {
 		super();
-		this.username = username;
-		this.password = password;
+		this.author = author;
+		this.content = content;
+
 	}
 
 	@Override
@@ -43,7 +47,7 @@ public class Credentials {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Credentials other = (Credentials) obj;
+		Tweet other = (Tweet) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -52,38 +56,38 @@ public class Credentials {
 		return true;
 	}
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public String getUsername() {
-		return username;
+	public User getAuthor() {
+		return author;
 	}
 
 	@Required
-	public void setUsername(String username) {
-		this.username = username;
+	public void setAuthor(User author) {
+		this.author = author;
 	}
 
-	public String getPassword() {
-		return password;
+	public Timestamp getPosted() {
+		return posted;
 	}
 
 	@Required
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPosted(Timestamp posted) {
+		this.posted = posted;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 }

@@ -1,30 +1,31 @@
 package com.cooksys.secondassessmentskeleton.pojo;
 
+import java.sql.Timestamp;
+import java.time.Instant;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 import org.springframework.beans.factory.annotation.Required;
 
 @Entity
-public class Credentials {
+public class Hashtag {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@OneToOne
-	private User user;
-	private String username;
-	private String password;
+	private String label;
+	private Timestamp firstUsed;
+	private Timestamp lastUsed;
 
-	public Credentials() {
-
+	public Hashtag() {
+		this.firstUsed = Timestamp.from(Instant.now());
 	}
 
-	public Credentials(String username, String password) {
+	public Hashtag(String label, Timestamp lastUsed) {
 		super();
-		this.username = username;
-		this.password = password;
+		this.label = label;
+		this.lastUsed = lastUsed;
 	}
 
 	@Override
@@ -43,7 +44,7 @@ public class Credentials {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Credentials other = (Credentials) obj;
+		Hashtag other = (Hashtag) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -60,30 +61,31 @@ public class Credentials {
 		this.id = id;
 	}
 
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
-	}
-
-	public String getUsername() {
-		return username;
+	public String getLabel() {
+		return label;
 	}
 
 	@Required
-	public void setUsername(String username) {
-		this.username = username;
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
-	public String getPassword() {
-		return password;
+	public Timestamp getFirstUsed() {
+		return firstUsed;
 	}
 
 	@Required
-	public void setPassword(String password) {
-		this.password = password;
+	public void setFirstUsed(Timestamp firstUsed) {
+		this.firstUsed = firstUsed;
+	}
+
+	public Timestamp getLastUsed() {
+		return lastUsed;
+	}
+
+	@Required
+	public void setLastUsed(Timestamp lastUsed) {
+		this.lastUsed = lastUsed;
 	}
 
 }
