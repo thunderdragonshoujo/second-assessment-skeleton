@@ -2,16 +2,15 @@ package com.cooksys.secondassessmentskeleton.controller;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cooksys.secondassessmentskeleton.dto.UserDto;
-import com.cooksys.secondassessmentskeleton.pojo.Credentials;
-import com.cooksys.secondassessmentskeleton.pojo.Profile;
 import com.cooksys.secondassessmentskeleton.pojo.User;
 import com.cooksys.secondassessmentskeleton.service.CredentialsService;
 import com.cooksys.secondassessmentskeleton.service.ProfileService;
@@ -34,6 +33,11 @@ public class UserController {
 	@GetMapping
 	public List<UserDto> getUserList() {
 		return userService.getAllUsers();
+	}
+	
+	@GetMapping("/users/@{username}")
+	public Object getUser(@PathVariable("username") String username){
+		return userService.findByUsername(username);
 	}
 
 	@PostMapping

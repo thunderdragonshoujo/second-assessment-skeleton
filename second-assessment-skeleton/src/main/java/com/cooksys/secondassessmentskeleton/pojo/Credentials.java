@@ -14,11 +14,12 @@ public class Credentials {
 	private String password;
 
 	public Credentials() {
+		System.out.println("credentials default ctor");
 
 	}
 
 	public Credentials(String username, String password) {
-		super();
+		System.out.println("credentials ctor");
 		this.username = username;
 		this.password = password;
 	}

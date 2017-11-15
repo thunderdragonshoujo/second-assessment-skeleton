@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Required;
 
 @Entity
@@ -19,15 +20,19 @@ public class Tweet {
 	private User author;
 	private Timestamp posted;
 	private String content;
+	//@OneToOne
+	//private Credentials credentials;
+	//private Tweet inReplyTo;
 
 	public Tweet() {
+		System.out.println("tweet default ctor");
 		this.posted = Timestamp.from(Instant.now());
 	}
-
 	public Tweet(User author, String content) {
-		super();
+		System.out.println("tweet  ctor");
 		this.author = author;
 		this.content = content;
+		
 
 	}
 
@@ -68,7 +73,7 @@ public class Tweet {
 		return author;
 	}
 
-	@Required
+	
 	public void setAuthor(User author) {
 		this.author = author;
 	}
@@ -89,5 +94,7 @@ public class Tweet {
 	public void setContent(String content) {
 		this.content = content;
 	}
+
+	
 
 }

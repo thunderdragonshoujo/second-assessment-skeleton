@@ -24,10 +24,12 @@ public class User {
 
 	public User() {
 		this.joined = Timestamp.from(Instant.now());
+		System.out.println("user default ctor");
 
 	}
 
 	public User(String username, Profile profile, Credentials credentials) {
+		System.out.println("user  ctor");
 		this.username = username;
 		this.profile = profile;
 		this.credentials = credentials;

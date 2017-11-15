@@ -5,6 +5,7 @@ import java.util.stream.Collectors;
 
 import javax.transaction.Transactional;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.cooksys.secondassessmentskeleton.dto.UserDto;
@@ -23,12 +24,12 @@ public class UserService {
 		super();
 		this.userRepository = userRepository;
 		this.userMapper = userMapper;
-		
-		//Credentials credentials =new Credentials("userclint","password");
-		//credentialsRepository.save(credentials);
-		//Profile profile = new Profile("clint","mcclure","cm@gmail.com","817");
-		//userRepository.save(new User("clint",profile,credentials)); 
-				
+
+		// Credentials credentials =new Credentials("userclint","password");
+		// credentialsRepository.save(credentials);
+		// Profile profile = new Profile("clint","mcclure","cm@gmail.com","817");
+		// userRepository.save(new User("clint",profile,credentials));
+
 	}
 
 	public List<UserDto> getAllUsers() {
@@ -40,4 +41,11 @@ public class UserService {
 		userRepository.save(user);
 	}
 
+	public List<UserDto> findByUsername(String username) {
+		return userRepository.findByUsername(username).stream().map(userMapper::toDto).collect(Collectors.toList());
+	}
+
+	//public ResponseEntity<?> findByUsername(String name) {
+		//return userRepository.findByUsername();
+	//}
 }
