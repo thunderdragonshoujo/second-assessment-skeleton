@@ -12,7 +12,6 @@ import com.cooksys.secondassessmentskeleton.mapper.UserMapper;
 import com.cooksys.secondassessmentskeleton.pojo.Credentials;
 import com.cooksys.secondassessmentskeleton.pojo.Profile;
 import com.cooksys.secondassessmentskeleton.pojo.User;
-import com.cooksys.secondassessmentskeleton.repository.CredentialsRepository;
 import com.cooksys.secondassessmentskeleton.repository.UserRepository;
 
 @Service

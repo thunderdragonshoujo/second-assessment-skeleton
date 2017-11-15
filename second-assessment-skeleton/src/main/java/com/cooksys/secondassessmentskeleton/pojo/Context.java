@@ -1,5 +1,7 @@
 package com.cooksys.secondassessmentskeleton.pojo;
 
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -21,7 +23,7 @@ public class Context {
 
 	}
 
-	public Context(Tweet target, Tweet before, Tweet after) {
+	public Context(Tweet target,Tweet before, Tweet after) {
 		super();
 		this.target = target;
 		this.before = before;

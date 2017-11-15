@@ -14,5 +14,5 @@ public class ProfileController {
 		super();
 		this.profileService = profileService;
 	}
-
+	
 }

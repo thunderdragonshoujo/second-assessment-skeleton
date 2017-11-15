@@ -3,8 +3,6 @@ package com.cooksys.secondassessmentskeleton.pojo;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-
 import org.springframework.beans.factory.annotation.Required;
 
 @Entity
@@ -12,8 +10,6 @@ public class Credentials {
 	@Id
 	@GeneratedValue
 	private Long id;
-	@OneToOne
-	private User user;
 	private String username;
 	private String password;
 
@@ -58,14 +54,6 @@ public class Credentials {
 
 	public void setId(Long id) {
 		this.id = id;
-	}
-
-	public User getUser() {
-		return user;
-	}
-
-	public void setUser(User user) {
-		this.user = user;
 	}
 
 	public String getUsername() {
