@@ -33,7 +33,7 @@ public class UserService {
 		this.profileRepository = profileRepository;
 		this.credentialsRepository = credentialsRepository;
 
-		createSomeTestUsers();
+		//createSomeTestUsers();
 
 	}
 
@@ -109,6 +109,21 @@ public class UserService {
 		}
 		return result;
 	}
+	
+	public boolean userExist(String username)throws UserNotFoundException {
+		boolean result = false;
+		List<UserDto> resultList = null;
+		try {
+			resultList = userRepository.findByUsername(username).stream().map(userMapper::toDto).collect(Collectors.toList());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new UserNotFoundException("USER NOT FOUND");
+		}
+		if(resultList.size()>0) {
+			result = true;
+		}
+		return result;
+	}
 
 	public void updateUserProfile(User user) {
 		User userToUpdate = userRepository.findByUsername(user.getUsername()).get(0);
@@ -124,11 +139,31 @@ public class UserService {
 		// userRepository.save(userToUpdate);
 	}
 
-	public void deleteUser(String username) {
-		User userToDelete = userRepository.findByUsername(username).get(0);
+	public User deleteUser(String username)throws UserException {
+		boolean userExisted = false;
+		User userToDelete = null;
+		try {
+			userExisted = userExist(username);
+		} catch (UserNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		try {
+			userToDelete = userRepository.findByUsername(username).get(0);
+		} catch (Exception e) {
+			System.out.println("INDEX ERROR");
+			e.printStackTrace();
+		}
+		if(userExisted){
 		System.out.println("YYYYYYYYYYYLYYYYY" + userToDelete.toString());
 		userToDelete.setActive(false);
 		userRepository.save(userToDelete);
-
+		}else {
+			throw new UserException("NO USER");
+		}
+		return userToDelete;
+	
 	}
 }
+

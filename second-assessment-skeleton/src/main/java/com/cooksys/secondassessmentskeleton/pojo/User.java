@@ -38,6 +38,7 @@ public class User {
 		this.username = username;
 		this.profile = profile;
 		this.credentials = credentials;
+		this.joined = Timestamp.from(Instant.now());
 	}
 
 	@Override

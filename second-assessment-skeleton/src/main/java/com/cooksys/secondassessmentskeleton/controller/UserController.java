@@ -79,7 +79,14 @@ public class UserController {
 	}
 
 	@DeleteMapping("/@{username}")
-	public void deleteUser(@PathVariable("username") String username) {
-		userService.deleteUser(username);
+	public User deleteUser(@PathVariable("username") String username,HttpServletResponse httpResponse) {
+		User result = null;
+		try {
+		result = userService.deleteUser(username);
+		}catch(UserException e){
+		httpResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+		e.printStackTrace();
+	}
+		return result;
 	}
 }
