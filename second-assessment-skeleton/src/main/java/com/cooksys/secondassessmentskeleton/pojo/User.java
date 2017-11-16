@@ -21,6 +21,7 @@ public class User {
 	@OneToOne
 	private Credentials credentials;
 	private Timestamp joined;
+	private Boolean active;
 
 	public User() {
 		this.joined = Timestamp.from(Instant.now());
@@ -98,6 +99,14 @@ public class User {
 
 	public void setJoined(Timestamp joined) {
 		this.joined = joined;
+	}
+
+	public Boolean getActive() {
+		return active;
+	}
+
+	public void setActive(Boolean active) {
+		this.active = active;
 	}
 
 }

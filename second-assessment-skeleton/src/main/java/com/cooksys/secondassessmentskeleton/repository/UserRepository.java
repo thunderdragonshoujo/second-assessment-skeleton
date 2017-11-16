@@ -13,6 +13,7 @@ import com.cooksys.secondassessmentskeleton.pojo.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 	public List<User> findAll();
 	public List<User> findByUsername(String username);
+	public User findByUsername(Class<User> class1, String username);
 
 
  
