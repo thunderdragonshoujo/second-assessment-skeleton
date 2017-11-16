@@ -18,6 +18,7 @@ public class User {
 	private String username;
 	@OneToOne
 	private Profile profile;
+
 	@OneToOne
 	private Credentials credentials;
 	private Timestamp joined;
@@ -107,6 +108,12 @@ public class User {
 
 	public void setActive(Boolean active) {
 		this.active = active;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", username=" + username + ", profile=" + profile + ", credentials=" + credentials
+				+ ", joined=" + joined + ", active=" + active + "]";
 	}
 
 }

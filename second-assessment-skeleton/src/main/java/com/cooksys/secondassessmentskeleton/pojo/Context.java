@@ -87,4 +87,9 @@ public class Context {
 		this.after = after;
 	}
 
+	@Override
+	public String toString() {
+		return "Context [id=" + id + ", target=" + target + ", before=" + before + ", after=" + after + "]";
+	}
+
 }

@@ -94,4 +94,10 @@ public class Profile {
 		this.phone = phone;
 	}
 
+	@Override
+	public String toString() {
+		return "Profile [id=" + id + ", firstName=" + firstName + ", lastName=" + lastName + ", email=" + email
+				+ ", phone=" + phone + "]";
+	}
+
 }

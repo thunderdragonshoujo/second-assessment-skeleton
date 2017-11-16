@@ -100,4 +100,10 @@ public class TweetReply {
 		this.inReplyTo = inReplyTo;
 	}
 
+	@Override
+	public String toString() {
+		return "TweetReply [id=" + id + ", author=" + author + ", posted=" + posted + ", content=" + content
+				+ ", inReplyTo=" + inReplyTo + "]";
+	}
+
 }

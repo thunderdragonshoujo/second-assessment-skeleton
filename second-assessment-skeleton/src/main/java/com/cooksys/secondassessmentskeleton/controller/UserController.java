@@ -25,7 +25,8 @@ public class UserController {
 	private ProfileService profileService;
 	private CredentialsService credentialsService;
 
-	public UserController(UserService userService, ProfileService profileService, CredentialsService credentialsService) {
+	public UserController(UserService userService, ProfileService profileService,
+			CredentialsService credentialsService) {
 		super();
 		this.userService = userService;
 		this.profileService = profileService;
@@ -36,9 +37,9 @@ public class UserController {
 	public List<UserDto> getUserList() {
 		return userService.getAllUsers();
 	}
-	
+
 	@GetMapping("/@{username}")
-	public Object getUser(@PathVariable("username") String username){
+	public Object getUser(@PathVariable("username") String username) {
 		return userService.findByUsername(username);
 	}
 
@@ -47,16 +48,14 @@ public class UserController {
 		credentialsService.saveCredentials(user.getCredentials());
 		profileService.saveProfile(user.getProfile());
 		userService.saveUser(user);
-		}
-	@PatchMapping("/@{username}")
-	public void patchUser(@RequestBody User user,@RequestParam("username") String username) {
-		//userService.updateUser(user, username,profile);
-		credentialsService.saveCredentials(user.getCredentials());
-		profileService.saveProfile(user.getProfile());
-		userService.saveUser(user);
+	}
 
-}
+	@PatchMapping("/@{username}")
+	public void patchUser(@RequestBody User user, @RequestParam("username") String username) {
+		userService.updateUserProfile(user);
+	}
+
 	@DeleteMapping("/@{username}")
-	public void deleteUser(@PathVariable("username")String username ) {
-}
+	public void deleteUser(@PathVariable("username") String username) {
+	}
 }

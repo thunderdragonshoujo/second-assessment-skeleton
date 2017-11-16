@@ -94,6 +94,10 @@ public class Tweet {
 	public void setContent(String content) {
 		this.content = content;
 	}
+	@Override
+	public String toString() {
+		return "Tweet [id=" + id + ", author=" + author + ", posted=" + posted + ", content=" + content + "]";
+	}
 
 	
 

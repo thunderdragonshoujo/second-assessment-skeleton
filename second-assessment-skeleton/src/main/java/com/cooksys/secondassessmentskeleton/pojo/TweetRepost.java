@@ -90,4 +90,9 @@ public class TweetRepost {
 		this.repostOf = repostOf;
 	}
 
+	@Override
+	public String toString() {
+		return "TweetRepost [id=" + id + ", author=" + author + ", posted=" + posted + ", repostOf=" + repostOf + "]";
+	}
+
 }

@@ -88,4 +88,9 @@ public class Hashtag {
 		this.lastUsed = lastUsed;
 	}
 
+	@Override
+	public String toString() {
+		return "Hashtag [id=" + id + ", label=" + label + ", firstUsed=" + firstUsed + ", lastUsed=" + lastUsed + "]";
+	}
+
 }
