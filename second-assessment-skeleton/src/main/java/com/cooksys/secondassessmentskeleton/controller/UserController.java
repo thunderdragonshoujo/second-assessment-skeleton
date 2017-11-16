@@ -2,6 +2,8 @@ package com.cooksys.secondassessmentskeleton.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cooksys.secondassessmentskeleton.dto.UserDto;
+import com.cooksys.secondassessmentskeleton.exceptions.UserException;
 import com.cooksys.secondassessmentskeleton.pojo.User;
 import com.cooksys.secondassessmentskeleton.service.CredentialsService;
 import com.cooksys.secondassessmentskeleton.service.ProfileService;
@@ -34,8 +37,15 @@ public class UserController {
 	}
 
 	@GetMapping
-	public List<UserDto> getUserList() {
-		return userService.getAllUsers();
+	public List<UserDto> getUserList(HttpServletResponse httpResponse) throws UserException {
+		List<UserDto> result = null;
+		try {
+			result = userService.getAllUsers();
+		} catch (UserException e) {
+			e.printStackTrace();
+			httpResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);	
+		}
+		return result;
 	}
 
 	@GetMapping("/@{username}")
@@ -44,10 +54,15 @@ public class UserController {
 	}
 
 	@PostMapping
-	public void createUser(@RequestBody User user) {
+	public void createUser(@RequestBody User user,HttpServletResponse httpResponse) {
+		try {
 		credentialsService.saveCredentials(user.getCredentials());
 		profileService.saveProfile(user.getProfile());
 		userService.saveUser(user);
+		}catch(Exception e){
+			httpResponse.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+			e.printStackTrace();
+		}
 	}
 
 	@PatchMapping("/@{username}")
@@ -57,5 +72,6 @@ public class UserController {
 
 	@DeleteMapping("/@{username}")
 	public void deleteUser(@PathVariable("username") String username) {
+		userService.deleteUser(username);
 	}
 }

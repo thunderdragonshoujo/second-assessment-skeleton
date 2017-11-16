@@ -9,6 +9,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.springframework.beans.factory.annotation.Required;
+
 @Entity
 @Table(name = "usert")
 public class User {
@@ -27,6 +29,7 @@ public class User {
 	public User() {
 		this.joined = Timestamp.from(Instant.now());
 		System.out.println("user default ctor");
+		this.setActive(true);
 
 	}
 
@@ -82,6 +85,7 @@ public class User {
 		return username;
 	}
 
+	@Required
 	public void setUsername(String username) {
 		this.username = username;
 	}
