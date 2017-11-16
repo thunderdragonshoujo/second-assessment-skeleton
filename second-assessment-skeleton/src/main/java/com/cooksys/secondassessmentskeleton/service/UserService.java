@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.cooksys.secondassessmentskeleton.dto.UserDto;
 import com.cooksys.secondassessmentskeleton.exceptions.UserException;
+import com.cooksys.secondassessmentskeleton.exceptions.UserNotFoundException;
 import com.cooksys.secondassessmentskeleton.mapper.UserMapper;
 import com.cooksys.secondassessmentskeleton.pojo.Credentials;
 import com.cooksys.secondassessmentskeleton.pojo.Profile;
@@ -95,8 +96,18 @@ public class UserService {
 		}
 	}
 
-	public List<UserDto> findByUsername(String username) {
-		return userRepository.findByUsername(username).stream().map(userMapper::toDto).collect(Collectors.toList());
+	public List<UserDto> findByUsername(String username)throws UserNotFoundException {
+		List<UserDto> result = null;
+		try {
+			result = userRepository.findByUsername(username).stream().map(userMapper::toDto).collect(Collectors.toList());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		if(result.size()==0) {
+			throw new UserNotFoundException("USER NOT FOUND");
+		}
+		return result;
 	}
 
 	public void updateUserProfile(User user) {

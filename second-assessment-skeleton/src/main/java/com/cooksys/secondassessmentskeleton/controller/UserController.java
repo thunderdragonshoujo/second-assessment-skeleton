@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.cooksys.secondassessmentskeleton.dto.UserDto;
 import com.cooksys.secondassessmentskeleton.exceptions.UserException;
+import com.cooksys.secondassessmentskeleton.exceptions.UserNotFoundException;
 import com.cooksys.secondassessmentskeleton.pojo.User;
 import com.cooksys.secondassessmentskeleton.service.CredentialsService;
 import com.cooksys.secondassessmentskeleton.service.ProfileService;
@@ -49,8 +50,15 @@ public class UserController {
 	}
 
 	@GetMapping("/@{username}")
-	public Object getUser(@PathVariable("username") String username) {
-		return userService.findByUsername(username);
+	public Object getUser(@PathVariable("username") String username,HttpServletResponse httpResponse) {
+		Object result = null;
+		try {
+			result = userService.findByUsername(username);
+		} catch (UserNotFoundException e) {
+			httpResponse.setStatus(400);
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 	@PostMapping
